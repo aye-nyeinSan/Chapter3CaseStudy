@@ -10,6 +10,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.input.Dragboard;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
@@ -181,6 +182,13 @@ public class MainViewController {
             popupListView.setOnMouseClicked(innerEvent -> {
                 Launcher.hs.showDocument("file:///" + lookupTable.get(popupListView.getSelectionModel().getSelectedItem()));
                 popupListView.getScene().getWindow().hide();
+            });
+            popupListView.setOnKeyPressed(e->
+            {
+                KeyCode key =e.getCode();
+                if(key==KeyCode.ESCAPE){
+                    popupListView.getScene().getWindow().hide();
+                }
             });
             Popup popup = new Popup();
 //            TextField textField = new TextField();
